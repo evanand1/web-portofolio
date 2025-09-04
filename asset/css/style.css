@@ -42,3 +42,8 @@
 .kontak txt{
     margin-top: 100px;
 }
+.nav-link.active {
+    color: #ffcc00 !important; /* warna teks */
+    font-weight: bold;        /* biar lebih menonjol */
+  }
+  

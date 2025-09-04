@@ -9,32 +9,35 @@
     <title>1312 the murder</title>
     <script src="asset/js/jquery.js"></script>
     <script src="asset/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#navbar" data-offset="70">
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-headerrpl fixed-top">
-            <a class="navbar-brand" href="#">
-                <img src="asset/img/logos.png" class="rpl-logo" alt="">
-                <span class="header-text-logo2 ">TinjuBalik HC</span><br>
-
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="#hero">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="#Isu">Suara Kami</a>
-                    <a class="nav-link" href="#Kami">Tentang Kami</a>
-                    <a class="nav-link" href="#Kontak">Kontak</a>
-                </div>
-            </div>
-        </nav>
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-headerrpl fixed-top">
+        <a class="navbar-brand" href="#">
+          <img src="asset/img/logos.png" class="rpl-logo" alt="">
+          <span class="header-text-logo2">TinjuBalik HC</span><br>
+        </a>
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="#hero">Home</a>
+            <a class="nav-link" href="#Isu">Suara Kami</a>
+            <a class="nav-link" href="#Kami">Tentang Kami</a>
+            <a class="nav-link" href="#Kontak">Kontak</a>
+          </div>
+        </div>
+      </nav>
     </header>
+  
 
     <section id="hero">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -84,7 +87,6 @@
 
     <section id="Isu" class="bg-headerrpl">
         <div class="container">
-            <!-- Content here -->
             <br><br><br><br><br><br>
             <h2 class="text-center isu-txt"> Suara kami !</h2>
             <br><br><br><br>
@@ -146,23 +148,58 @@
                             Surakarta</a></p>
 
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-md kontak-txt2">
                         <br><br><br><br><br><br>
                         <p class="text-center"><a
                                 href="https://open.spotify.com/intl-id/artist/4OtqLk2bIcV3OLbrnZkQ95?si=Ky1jG_riTzaRAauj3M51Yg">Stream
                                 our Music on any Digital Streaming Platform !!</a></p>
                     </div>
-                    <div class="row ">
-                        <div class="col-md kontak-txt2">
+                    <div class="row justify-content-center ">
+                        <div class="col-md " style="display: flex; align-items: center; justify-content: center;">
                             <br><br><br><br><br><br>
-                            <h2 class="text-center isu-txt kontak-txt">Siapa saja yang telah menginjakmu , LAWAN! Siapa
-                                saja yang telah
-                                merendahkanmu , LAWAN!</h2><br><br><br><br>
+                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                            <script>
+                                const xValues = ["Surakarta", "Yogyakarta", "Semarang", "Jakarta", "Bandung"];
+                                const yValues = [150, 50, 44, 40, 10];
+                                const barColors = [
+                                    "#b91d47",
+                                    "#00aba9",
+                                    "#2b5797",
+                                    "#e8c3b9",
+                                    "#1e7145"
+                                ];
+
+                                new Chart("myChart", {
+                                    type: "doughnut",
+                                    data: {
+                                        labels: xValues,
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                    },
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: "Pendengar Kami"
+                                        }
+                                    }
+                                });
+                            </script>
+
+                        </div>
+                        <div class="row ">
+                            <div class="col-md kontak-txt2">
+                                <br><br><br><br><br><br>
+                                <h2 class="text-center isu-txt kontak-txt">Siapa saja yang telah menginjakmu , LAWAN!
+                                    Siapa
+                                    saja yang telah
+                                    merendahkanmu , LAWAN!</h2><br><br><br><br>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 </body>
 
