@@ -1,0 +1,44 @@
+.rpl-logo{
+    width: 100px;
+}
+.bg-headerrpl{
+    background-color:rgb(0, 0, 0);
+}
+.header-text-logo{
+    color: rgb(247, 132, 197);
+    font-family: fantasy;
+}
+.header-text-logo2{
+    color: rgb(135, 128, 104);
+    font-family: fantasy;
+}
+.hero-img{
+    color: red;
+    font-family: fantasy;
+}
+.suara-img{
+    width: 350px;
+}
+.isu-txt{
+    color: red;
+    font-family: fantasy;
+}
+.kami-txt{
+    color: rgb(135, 128, 104);
+    font-family: fantasy;
+}
+.kami-img{
+    width:500px;
+    margin-bottom: 100px;
+}
+.kami-txt2{
+    font-size: x-large;
+    text-align: justify;
+}
+.kontak-txt2{
+    font-size: x-large;
+    text-align: justify;
+}
+.kontak txt{
+    margin-top: 100px;
+}
