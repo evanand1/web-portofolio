@@ -16,28 +16,29 @@
 <body data-spy="scroll" data-target="#navbar" data-offset="70">
 
     <header>
-      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-headerrpl fixed-top">
-        <a class="navbar-brand" href="#">
-          <img src="asset/img/logos.png" class="rpl-logo" alt="">
-          <span class="header-text-logo2">TinjuBalik HC</span><br>
-        </a>
-  
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" href="#hero">Home</a>
-            <a class="nav-link" href="#Isu">Suara Kami</a>
-            <a class="nav-link" href="#Kami">Tentang Kami</a>
-            <a class="nav-link" href="#Kontak">Kontak</a>
-          </div>
-        </div>
-      </nav>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-headerrpl fixed-top">
+            <a class="navbar-brand" href="#">
+                <img src="asset/img/logos.png" class="rpl-logo" alt="">
+                <span class="header-text-logo2">TinjuBalik HC</span><br>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="#hero">Home</a>
+                    <a class="nav-link" href="#Isu">Suara Kami</a>
+                    <a class="nav-link" href="#Lirik">Lagu Kami</a>
+                    <a class="nav-link" href="#Kami">Tentang Kami</a>
+                    <a class="nav-link" href="#Kontak">Kontak</a>
+                </div>
+            </div>
+        </nav>
     </header>
-  
+
 
     <section id="hero">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -106,7 +107,93 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
+
+    <section id="Lirik" class="bg-headerrpl"> 
+        <div class="container">
+            <br><br><br><br><br><br>
+            <h3 class="text-center isu-txt">Lirik Lagu</h3>
+            <br><br><br><br>
+            <div class="row isu-txt">
+                <?php
+                include("koneksi.php");
+                $sql = "SELECT judul, keterangan FROM suarakami;";
+                $hasil = $conn->query($sql);
+
+                if ($hasil->num_rows >0){
+                    while($suarakami = $hasil->fetch_assoc()){
+                        echo '<div class="col-md-4">';
+                        echo '<h4>' .$suarakami["judul"]. '</h4>';
+                        echo '<p class="kami-txt">' .$suarakami["keterangan"]. '</p>';
+                        echo '</div>';
+                    }
+                }
+                $conn->close();
+                ?>
+              </div> 
+            
+              <div class="row isu-txt">
+              <br><br><br><br><br><br>
+              <h2 class="text-center isu-txt">Jumlah Pendengar Lagu</h2>
+              <br><br><br><br>               
+              <canvas id="laguChart" width="400" height="200"></canvas>
+
+<script>
+  fetch('data.php')
+    .then(response => response.json())
+    .then(data => {
+      let labels = data.map(row => row.judulLagu);
+      let values = data.map(row => row.jumlah);
+
+      let ctx = document.getElementById('laguChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Jumlah Pendengar',
+            data: values,
+            backgroundColor: 'rgba(255, 0, 0, 0.5)',  // warna merah transparan untuk area bawah garis
+            borderColor: 'red',  // warna garis merah
+            borderWidth: 2,
+            pointBackgroundColor: 'red',  // warna titik merah
+            borderWidth: 2,
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: 'white' // legend warna putih
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: 'white' },
+              grid: { color: 'rgba(255,255,255,0.2)' }
+            },
+            y: {
+              ticks: { color: 'white' },
+              grid: { color: 'rgba(255,255,255,0.2)' }
+            }
+          }
+        }
+      });
+    });
+</script>
+
+
+              </div>
+              
+            </div>
+    </section>
+        
+
 
     <section id="Kami" class="bg-headerrpl kami-txt">
         <div class="container">
@@ -156,7 +243,7 @@
                                 our Music on any Digital Streaming Platform !!</a></p>
                     </div>
                     <div class="row justify-content-center ">
-                        <div class="col-md " style="display: flex; align-items: center; justify-content: center;">
+                        <div class="col-md-12 " style="display: flex; align-items: center; justify-content: center;">
                             <br><br><br><br><br><br>
                             <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
                             <script>
@@ -187,8 +274,9 @@
                                     }
                                 });
                             </script>
-
                         </div>
+
+
                         <div class="row ">
                             <div class="col-md kontak-txt2">
                                 <br><br><br><br><br><br>
@@ -200,7 +288,18 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="container-fluid">
+                    <div class="col-md-12">
+                        <br><br><br>
+                        <h5 class="text-center">TERIMAKASIH</h5>
+                        <h5 class="text-center">TinjuBalik-HC</h5>
+                        <h5 class="text-center">SOC</h5>
+                    </div>
+                </div>
+
     </section>
+
 </body>
 
 </html>
